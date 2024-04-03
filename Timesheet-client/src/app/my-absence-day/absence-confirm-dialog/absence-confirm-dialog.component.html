@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Absence Request</h1>
+<div mat-dialog-content>
+  Would you like to delete this absence request ?
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button mat-raised-button type="reset" color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" [mat-dialog-close]="" cdkFocusInitial
+    (click)="deleteItem()">Ok</button>
