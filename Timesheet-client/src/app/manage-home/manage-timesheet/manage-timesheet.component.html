@@ -39,7 +39,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let element">
-                    <button *ngIf="element.status === timesheetStatus.PENDING || element.status === timesheetStatus.REJECT" mat-raised-button color="primary" (click)="updateTimesheetStatus(element.id, timesheetStatus.APPROVED)">Approve</button>
+                    <button *ngIf="element.status === timesheetStatus.PENDING || element.status === timesheetStatus.REJECT" mat-raised-button color="warn" (click)="updateTimesheetStatus(element.id, timesheetStatus.APPROVED)">Approve</button>
                     &nbsp;
                     <button *ngIf="element.status === timesheetStatus.PENDING || element.status === timesheetStatus.APPROVED" mat-raised-button color="warn" (click)="updateTimesheetStatus(element.id, timesheetStatus.REJECT)">Reject</button>
                 </td>

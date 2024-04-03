@@ -3,6 +3,6 @@
     <h1 mat-dialog-title *ngIf="this.data.punishmentStatus === true">Are you sure to give punishment?</h1>
     <div mat-dialog-actions style="float: right;">
         <button mat-raised-button type="reset" color="warn" (click)="onNoClick()">Cancel</button>
-        <button mat-raised-button type="submit" color="primary" [mat-dialog-close]="" (click)="updateIsDeleted()">Ok</button>
+        <button mat-raised-button type="submit" color="warn" [mat-dialog-close]="" (click)="updateIsDeleted()">Ok</button>
     </div>
 </mat-card>

@@ -1,20 +1,14 @@
-<mat-toolbar color="primary">
-  <span>Timesheet</span>
+<mat-toolbar color="warn">
+  <span>VIETTEL POST HRM</span>
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" aria-label="Logout button" matTooltip="Logout" (click)="logout()">
     <mat-icon (click)="logout()">logout</mat-icon>
   </button>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened="true">
+  <mat-sidenav mode="side" opened="true" style="width: 18%">
     <div class="profile">
       <div class="profile-content">
-        <div class="avatar">
-          <img *ngIf="employeeId === 43" src="https://cdn-icons-png.flaticon.com/512/771/771203.png" alt="avatar"
-            style="width: 60px;" class="rounded-circle">
-          <img *ngIf="employeeId !== 43" [src]="'data:image/jpeg;base64,' + image" alt="avatar" style="width: 60px;"
-            class="rounded-circle">
-        </div>
         &nbsp;
         &nbsp;
         &nbsp;
@@ -28,7 +22,7 @@
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Persional timesheet
+            Personal Information
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
@@ -36,10 +30,6 @@
               aria-label="Profile" fontIcon="icon">account_box</mat-icon>&nbsp;My Profile</a>
           <a style="font-size: 15px;" mat-list-item routerLink="timesheet"><mat-icon aria-hidden="false"
               aria-label="Timesheet" fontIcon="icon">alarm</mat-icon>&nbsp;My Timesheets</a>
-          <a style="font-size: 15px;" mat-list-item routerLink="absence"><mat-icon aria-hidden="false"
-              aria-label="Absence Day" fontIcon="icon">event_busy</mat-icon>&nbsp;My Request off/Remote/Onsite</a>
-          <a style="font-size: 15px;" mat-list-item routerLink="messenger"><mat-icon aria-hidden="false"
-              aria-label="Messenger" fontIcon="icon">event_busy</mat-icon>&nbsp;My messenger</a>
         </mat-nav-list>
       </mat-expansion-panel>
     </mat-accordion>
@@ -72,15 +62,10 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
-          <a style="font-size: 15px;" mat-list-item routerLink="manage_absence"><mat-icon aria-hidden="false"
-              aria-label="Absence Day" fontIcon="icon">rule</mat-icon>&nbsp;Request off/Remote/Onsite</a>
           <a style="font-size: 15px;" mat-list-item routerLink="manage_timesheet"><mat-icon aria-hidden="false"
               aria-label="Manage Employee Timesheet" fontIcon="icon">alarm</mat-icon>&nbsp;Timesheet</a>
           <a style="font-size: 15px;" mat-list-item routerLink="manage_monitoring"><mat-icon aria-hidden="false"
-              aria-label="Manage Employee Timesheet" fontIcon="icon">supervised_user_circle</mat-icon>&nbsp;Timesheet
-            monitoring</a>
-          <a style="font-size: 15px;" mat-list-item routerLink="manage_Tardiness"><mat-icon aria-hidden="false"
-              aria-label="Manage Employee Timesheet" fontIcon="icon">wysiwyg</mat-icon>&nbsp;Tardiness</a>
+              aria-label="Manage Employee Timesheet" fontIcon="icon">supervised_user_circle</mat-icon>&nbsp;Salary</a>
         </mat-nav-list>
       </mat-expansion-panel>
     </mat-accordion>

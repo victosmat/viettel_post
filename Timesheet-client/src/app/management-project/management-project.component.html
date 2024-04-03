@@ -4,7 +4,7 @@
     </mat-card-header>
     <div style="display: flex; margin-top: 20px;">
         <div class="col-md-6" style="padding: 5px 15px 10px 0">
-            <button class="col-sm-4" large mat-raised-button color="primary" style="width: 100px"
+            <button class="col-sm-4" large mat-raised-button color="warn" style="width: 100px"
                 (click)="saveProject()" name="createBtn">
                 <mat-icon>add</mat-icon> New
             </button>
@@ -83,7 +83,7 @@
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element">
                 <section>
-                    <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary"
+                    <button mat-mini-fab [matMenuTriggerFor]="menu" color="warn"
                         aria-label="Example icon button with a menu icon">
                         <mat-icon>menu</mat-icon>
                     </button>

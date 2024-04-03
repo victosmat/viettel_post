@@ -80,13 +80,13 @@
                                     <mat-panel-title> Selected member </mat-panel-title>
                                     <div style="float: right; margin-right: 20px;">
                                         <div *ngIf="this.checkAddMember === false" class="col-md-6">
-                                            <button class="col-sm-4" large mat-raised-button color="primary"
+                                            <button class="col-sm-4" large mat-raised-button color="warn"
                                                 style="width: 150px" (click)="addUser(); $event.stopPropagation()" name="createBtn">
                                                 <mat-icon>add</mat-icon> Add user
                                             </button>
                                         </div>
                                         <div *ngIf="this.checkAddMember === true" class="col-md-6">
-                                            <button class="col-sm-4" large mat-raised-button color="primary"
+                                            <button class="col-sm-4" large mat-raised-button color="warn"
                                                 style="width: 150px" (click)="exitAdd(); $event.stopPropagation()" name="createBtn">
                                                 <mat-icon>add</mat-icon> Exit add
                                             </button>
@@ -99,7 +99,7 @@
                                         <mat-label>Search by keyword</mat-label>
                                         <input matInput formControlName="keywordSelected" name="keywordSelected" />
                                     </mat-form-field>
-                                    <button type="button" style="margin-top: 10px;" mat-icon-button mat-raised-button color="primary"
+                                    <button type="button" style="margin-top: 10px;" mat-icon-button mat-raised-button color="warn"
                                         (click)="filterSelected()">
                                         <mat-icon>filter_list</mat-icon>
                                     </button>
@@ -148,7 +148,7 @@
                                         <mat-label>Search by keyword</mat-label>
                                         <input matInput formControlName="keyword" />
                                     </mat-form-field>
-                                    <button type="button" style="margin-top: 10px;" mat-icon-button mat-raised-button color="primary"
+                                    <button type="button" style="margin-top: 10px;" mat-icon-button mat-raised-button color="warn"
                                         (click)="filter()">
                                         <mat-icon>filter_list</mat-icon>
                                     </button>
@@ -161,7 +161,7 @@
                                                     {{employee.roles}} </div>
                                                 <div>{{ employee.email }}</div>
                                             </div>
-                                            <button type="button" mat-icon-button mat-raised-button color="primary"
+                                            <button type="button" mat-icon-button mat-raised-button color="warn"
                                                 (click)="addUserToTeam(employee)">
                                                 <mat-icon>add</mat-icon>
                                             </button>
@@ -177,7 +177,7 @@
                 <button mat-raised-button type="reset" color="warn" (click)="onNoClick()">
                     Cancel
                 </button>
-                <button mat-raised-button type="submit" color="primary" cdkFocusInitial>
+                <button mat-raised-button type="submit" color="warn" cdkFocusInitial>
                     Ok
                 </button>
             </div>

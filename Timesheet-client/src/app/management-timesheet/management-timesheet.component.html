@@ -81,8 +81,8 @@
                           updateAllCompleteEmployee(employeeView)
                         ">
                         {{ employeeView.employeeName }}
-                        <div style="font-size: 12px;" class="badge bg-primary">{{employeeView.employeeLevel}}</div>
-                        <div style="font-size: 12px; margin-left: 5px;" class="badge bg-primary">
+                        <div style="font-size: 12px;" class="badge bg-warn">{{employeeView.employeeLevel}}</div>
+                        <div style="font-size: 12px; margin-left: 5px;" class="badge bg-warn">
                           {{employeeView.employeeDepartment}}</div>
                       </mat-checkbox>
                     </mat-expansion-panel-header>
@@ -135,7 +135,7 @@
                                   </td>
                                   <td>
                                     <section>
-                                      <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary"
+                                      <button mat-mini-fab [matMenuTriggerFor]="menu" color="warn"
                                         aria-label="Example icon button with a menu icon">
                                         <mat-icon>menu</mat-icon>
                                       </button>

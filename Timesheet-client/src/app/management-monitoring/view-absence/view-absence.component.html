@@ -1,11 +1,11 @@
 <div style="width: 100%;">
     <mat-card-header style="border-bottom: 1px solid silver; display: flex; justify-content: space-between;">
         <mat-card-title style="font-size: 30px"> Absence by {{fullNameViewDetail}}
-            <div style="font-size: 15px;" class="badge bg-primary">{{emailViewDetail}}</div>
-            <div style="font-size: 15px; margin-left: 5px;" class="badge bg-primary">{{departmentNameViewDetail}}
+            <div style="font-size: 15px;" class="badge bg-warn">{{emailViewDetail}}</div>
+            <div style="font-size: 15px; margin-left: 5px;" class="badge bg-warn">{{departmentNameViewDetail}}
             </div>
         </mat-card-title>
-        <button mat-mini-fab color="primary" (click)="backToView()"><mat-icon>keyboard_return</mat-icon></button>
+        <button mat-mini-fab color="warn" (click)="backToView()"><mat-icon>keyboard_return</mat-icon></button>
     </mat-card-header>
 
     <div style="display: flex; margin-top: 10px; justify-content: center;">

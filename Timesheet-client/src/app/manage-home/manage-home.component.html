@@ -26,7 +26,7 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" (click)="openTimesheetManage(element.id)">Timesheet</button>
+                <button mat-raised-button color="warn" (click)="openTimesheetManage(element.id)">Timesheet</button>
                 &nbsp;
                 <button mat-raised-button color="accent" (click)="openAbsenceManage(element.id)">Absence</button>
             </td>

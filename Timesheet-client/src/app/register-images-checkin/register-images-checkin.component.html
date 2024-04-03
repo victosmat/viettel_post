@@ -4,7 +4,7 @@
             <b style="text-align: center;">{{ currentTime | date: 'HH:mm:ss dd/MM/yyyy' }}</b>
         </mat-card-title>
         <div class="button-group" *ngIf="checkAuthen">
-            <button style="border-bottom: 10px;" mat-raised-button color="primary" (click)="checkPermissions()">
+            <button style="border-bottom: 10px;" mat-raised-button color="warn" (click)="checkPermissions()">
                 <mat-icon>videocam</mat-icon>
             </button>
         </div>
@@ -49,7 +49,7 @@
                                         <input matInput [(ngModel)]="keyword" (input)="searchOrFilter()" />
                                     </mat-form-field>
                                     <button type="button" style="margin-top: 10px; margin-left: 10px;" mat-icon-button
-                                        mat-raised-button color="primary" (click)="filter()">
+                                        mat-raised-button color="warn" (click)="filter()">
                                         <mat-icon>filter_list</mat-icon>
                                     </button>
                                 </div>
@@ -61,7 +61,7 @@
                                                     {{employee.roles}} </div>
                                                 <div>{{ employee.email }}</div>
                                             </div>
-                                            <button type="button" mat-icon-button mat-raised-button color="primary"
+                                            <button type="button" mat-icon-button mat-raised-button color="warn"
                                                 (click)="chooseEmployee(employee)">
                                                 <mat-icon>touch_app</mat-icon>
                                             </button>
@@ -88,7 +88,7 @@
                                     <div class="item-image">
                                         <div>
                                             <img [src]="image" class="captured-image" alt="Captured Image">
-                                            <button mat-fab color="primary"
+                                            <button mat-fab color="warn"
                                                 style="position: absolute; top: 0px; right: 0px;"
                                                 (click)="deleteImage(i)">
                                                 <mat-icon>delete</mat-icon>
@@ -98,7 +98,7 @@
                                 </mat-grid-tile>
                             </mat-grid-list>
                             <div class="button-group">
-                                <button mat-raised-button color="primary" (click)="registerImages()"
+                                <button mat-raised-button color="warn" (click)="registerImages()"
                                     [disabled]="imageBase64List.length !== 4">
                                     Register Images
                                 </button>
