@@ -1,6 +1,7 @@
 <mat-card class="content mat-elevation-z4">
     <mat-card-header>
-        <mat-card-title style="font-size: 30px; margin-top: 20px;"> {{selectedDate | date: "dd-MM-yyyy"}} </mat-card-title>
+        <mat-card-title style="font-size: 30px; margin-top: 20px;"> {{selectedDate | date: "dd-MM-yyyy"}}
+        </mat-card-title>
         <div>
             <button mat-raised-button color="warn" style="margin-right: 15px; height: 55px;"
                 (click)="refresh()">Refresh</button>
@@ -33,13 +34,15 @@
                 <mat-tab style="justify-content: space-between;">
                     <ng-template mat-tab-label>
                         <div>
-                            <b matBadge="1" matBadgeColor="accent" [matBadgeHidden]="this.checkComment(i)"> {{daysArray[i].label}}</b>
+                            <b matBadge="1" matBadgeColor="accent" [matBadgeHidden]="this.checkComment(i)">
+                                {{daysArray[i].label}}</b>
                             <div *ngIf="getWorkingTime(i) !== '00:00'"> {{getWorkingTime(i)}} </div>
                             <div *ngIf="getWorkingTime(i) === '00:00'"> <br> </div>
                         </div>
                     </ng-template>
                     <br>
                     <ng-container *ngIf="getNotesPerDay(i) === null; else templateShow">
+                        <div class="no-content">No content available !!!</div>
                     </ng-container>
                     <ng-template #templateShow style="display: flex; justify-content: space-between;">
                         <mat-card *ngFor="let item of getNotesPerDay(i)?.lst" style="background-color: #f9f9f9;"
@@ -102,10 +105,12 @@
                 </ng-template>
             </mat-tab>
         </mat-tab-group>
-        <div style="position: absolute; bottom: 0; margin-bottom: 1%; display: flex; justify-content: space-between; width: 100%">
+        <div
+            style="position: absolute; bottom: 0; margin-bottom: 1%; display: flex; justify-content: space-between; width: 100%">
             <button mat-raised-button color="warn"
                 (click)="showTimesheetForm(undefined)"><mat-icon>add</mat-icon></button>
-            <button mat-raised-button color="warn" (click)="submitWeekForApproved()" style="margin-right: 32px;">Submit week for
+            <button mat-raised-button color="warn" (click)="submitWeekForApproved()" style="margin-right: 32px;">Submit
+                week for
                 approved</button>
         </div>
     </mat-card-content>
@@ -117,8 +122,7 @@
             <mat-form-field>
                 <span>Status</span>
                 <mat-select [(value)]="statusSummary" (valueChange)="findSummary('STATUS')">
-                    <mat-option *ngFor="let i of ['ALL', 'NEW', 'PENDING', 'APPROVED']"
-                        [value]="i">{{i}}</mat-option>
+                    <mat-option *ngFor="let i of ['ALL', 'NEW', 'PENDING', 'APPROVED']" [value]="i">{{i}}</mat-option>
                 </mat-select>
             </mat-form-field>
             &nbsp;

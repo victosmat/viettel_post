@@ -66,3 +66,12 @@ th[colspan="2"] {
   border-radius: 8px;
   padding: 8px;
 }
+
+.no-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 20px;
+  color: red;
+}

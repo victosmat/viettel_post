@@ -20,7 +20,7 @@
       </mat-form-field>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
-      
+
       <mat-form-field class="example-full-width" appearance="outline" style="width: 250px; margin-left: 30px">
         <mat-label for="status">Status</mat-label>
         <mat-select id="status" [(value)]="status" (valueChange)="updateStatus(status)">
@@ -38,15 +38,18 @@
 
       &nbsp; &nbsp; &nbsp;
       <div style="margin-top: 10px; margin-left: 50px">
-        <button style="height: 40px;flex: 1;" mat-raised-button type="reset" color="warn" (click)="approve()">
+        <button style="height: 40px; flex: 1;" mat-raised-button type="reset" style="
+        flex: 1;
+        height: 40px;
+        margin-left: 30px;
+        color: white;
+        background-color: green;" (click)="approve()">
           Approve
         </button>
-        <button style="
+        <button color="warn" style="
             flex: 1;
             height: 40px;
-            margin-left: 30px;
-            background-color: green;
-          " mat-raised-button type="reset" color="warn" (click)="reject()">
+            margin-left: 30px;" mat-raised-button type="reset" color="warn" (click)="reject()">
           Reject
         </button>
       </div>
@@ -79,8 +82,9 @@
                           updateAllCompleteEmployee(employeeView)
                         ">
                         {{ employeeView.employeeName }}
-                        <div style="font-size: 12px; color: black;" class="badge bg-warn">{{employeeView.employeeLevel}}</div>
-                        <div style="font-size: 12px; margin-left: 5px; color: black;" class="badge bg-warn">
+                        <div style="font-size: 12px;" class="badge bg-info">{{employeeView.employeeLevel}}
+                        </div>
+                        <div style="font-size: 12px; margin-left: 5px;" class="badge bg-info">
                           {{employeeView.employeeDepartment}}</div>
                       </mat-checkbox>
                     </mat-expansion-panel-header>
@@ -92,9 +96,8 @@
                               <mat-checkbox [(ngModel)]="noteView.completed"
                                 (ngModelChange)="updateAllCompleteNote(noteView)">
                                 {{ noteView.dateSubmit | date : "yyyy - MM - dd" }}
-                                <div style="font-size: 12px;" class="badge bg-info">{{noteView.taskCode}}
-                                </div>
-                                <div style="font-size: 12px; margin-left: 5px;" class="badge bg-info">
+                                <div style="font-size: 12px;" class="badge bg-primary">{{noteView.taskCode}}</div>
+                                <div style="font-size: 12px; margin-left: 5px;" class="badge bg-primary">
                                   {{noteView.taskStatus}}</div>
                               </mat-checkbox>
                             </mat-expansion-panel-header>
