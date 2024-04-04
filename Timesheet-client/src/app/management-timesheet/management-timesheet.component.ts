@@ -338,8 +338,14 @@ export class ManagementTimesheetComponent implements OnInit {
         });
       });
     });
-
     const noteIdsString = noteIds.join(',');
+    if(noteIdsString === "" || noteIdsString === null) {
+      this.snackBar.open('Cannot approved any request', 'Close', {
+        duration: 2000,
+        panelClass: ['success-snackbar'],
+      });
+      return;
+    }
     this.timesheetService
       .updateTimesheetStatus(noteIdsString, TimeSheetStatus.APPROVED)
       .subscribe({
