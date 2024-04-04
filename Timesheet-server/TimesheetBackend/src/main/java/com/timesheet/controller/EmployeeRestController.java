@@ -9,7 +9,6 @@ import com.timesheet.dto.account.RoleDto;
 import com.timesheet.dto.employee.*;
 import com.timesheet.repository.EmployeeRepository;
 import com.timesheet.service.*;
-import com.timesheet.ultilities.FileUploadUtil;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
@@ -144,14 +143,12 @@ public class EmployeeRestController {
     public ResponseEntity<?> deleteEmployee(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
         try {
             employeeService.detete(id);
-            String employeeImagesDir = "employee-photos/" + id;
-            FileUploadUtil.removeDir(employeeImagesDir);
-            return ResponseEntity.ok("Delete employee successfully!");
         } catch (EmployeeNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Delete employee failed!");
         }
+        return null;
     }
 
     @GetMapping("{id}/notes")

@@ -2,7 +2,6 @@ package com.timesheet.service;
 
 import com.manage.employeemanagementmodel.entity.Employee;
 import com.manage.employeemanagementmodel.exception.EmployeeNotFoundException;
-import com.timesheet.dto.CheckInDto;
 import com.timesheet.dto.employee.BuddyDto;
 import com.timesheet.dto.employee.EmployeeFormDto;
 import com.timesheet.dto.employee.EmployeeSaveDto;
@@ -14,7 +13,6 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    CheckInDto.ProfileDto getEmployeeInfo(Integer id);
 
     Integer getEmployeeId(String username);
 

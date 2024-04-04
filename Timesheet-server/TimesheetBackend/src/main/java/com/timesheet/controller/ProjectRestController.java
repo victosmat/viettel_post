@@ -1,6 +1,5 @@
 package com.timesheet.controller;
 
-import com.manage.employeemanagementmodel.entity.Bonus;
 import com.manage.employeemanagementmodel.entity.enums.ProjectStatus;
 import com.timesheet.dto.project.*;
 import com.timesheet.service.ProjectService;
@@ -11,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/app/projects")

@@ -1,7 +1,6 @@
 package com.timesheet.repository;
 
 import com.manage.employeemanagementmodel.entity.Employee;
-import com.manage.employeemanagementmodel.entity.enums.DepartmentLevelStatus;
 import com.timesheet.dto.*;
 import com.timesheet.dto.employee.*;
 import com.timesheet.dto.mapper.employee.EmployeeBasicInfoInterfaceDto;
@@ -17,9 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    @Query("SELECT new com.timesheet.dto.project.ProfileDto(CONCAT(em.firstName, ' ', em.lastName), em.account.username, em.birthDate, em.department.name, em.jobDepartment.name ) " +
-            "FROM Employee em WHERE em.id = ?1")
-    CheckInDto.ProfileDto getEmployeeInfo(Integer id);
 
     @Query("SELECT em.id FROM Employee em WHERE em.account.username =?1")
     Integer getEmployeeId(String username);

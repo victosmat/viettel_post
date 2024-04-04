@@ -62,19 +62,10 @@ public class Employee implements Serializable {
     @JoinColumn(name = "job_department_id", nullable = false)
     @JsonIgnore
     private JobDepartment jobDepartment;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JsonIgnore
-    private List<EmployeeBonus> employeeBonuses;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<CheckIn> checkIns = new ArrayList<>();
 
     @Column(name = "level_status")
     @Enumerated(EnumType.STRING)
     private DepartmentLevelStatus employeeLevelStatus;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JsonIgnore
-    private List<Absence> absences = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
     @JsonIgnore
@@ -88,7 +79,7 @@ public class Employee implements Serializable {
     @JsonIgnore
     private Bank bank;
 
-    public Employee(Integer id, String firstName, String lastName, Gender gender, LocalDate birthDate, LocalDate hiringDate, String email, String photo, boolean enabled, Employee buddy, Department department, List<Note> notes, List<NoteComment> noteComments, Account account, JobDepartment jobDepartment, List<EmployeeBonus> employeeBonuses, List<CheckIn> checkIns, List<Absence> absences, DepartmentLevelStatus employeeLevelStatus, List<EmployeeProject> employeeProjects, Bank bank) {
+    public Employee(Integer id, String firstName, String lastName, Gender gender, LocalDate birthDate, LocalDate hiringDate, String email, String photo, boolean enabled, Employee buddy, Department department, List<Note> notes, List<NoteComment> noteComments, Account account, JobDepartment jobDepartment, DepartmentLevelStatus employeeLevelStatus, List<EmployeeProject> employeeProjects, Bank bank) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -104,9 +95,6 @@ public class Employee implements Serializable {
         this.noteComments = noteComments;
         this.account = account;
         this.jobDepartment = jobDepartment;
-        this.employeeBonuses = employeeBonuses;
-        this.checkIns = checkIns;
-        this.absences = absences;
         this.employeeLevelStatus = employeeLevelStatus;
         this.employeeProjects = employeeProjects;
         this.bank = bank;
@@ -241,13 +229,6 @@ public class Employee implements Serializable {
         this.jobDepartment = jobDepartment;
     }
 
-    public List<EmployeeBonus> getEmployeeBonuses() {
-        return employeeBonuses;
-    }
-
-    public void setEmployeeBonuses(List<EmployeeBonus> employeeBonuses) {
-        this.employeeBonuses = employeeBonuses;
-    }
 
     public List<Note> getNotes() {
         return notes;
@@ -265,21 +246,6 @@ public class Employee implements Serializable {
         this.noteComments = noteComments;
     }
 
-    public List<CheckIn> getCheckIns() {
-        return checkIns;
-    }
-
-    public void setCheckIns(List<CheckIn> checkIns) {
-        this.checkIns = checkIns;
-    }
-
-    public List<Absence> getAbsences() {
-        return absences;
-    }
-
-    public void setAbsences(List<Absence> absences) {
-        this.absences = absences;
-    }
 
     public List<EmployeeProject> getEmployeeProjects() {
         return employeeProjects;
@@ -326,10 +292,7 @@ public class Employee implements Serializable {
                 ", notes=" + notes +
                 ", account=" + account +
                 ", jobDepartment=" + jobDepartment +
-                ", employeeBonuses=" + employeeBonuses +
-                ", checkIns=" + checkIns +
                 ", employeeLevelStatus=" + employeeLevelStatus +
-                ", absences=" + absences +
                 ", employeeProjects=" + employeeProjects +
                 ", bank=" + bank +
                 '}';

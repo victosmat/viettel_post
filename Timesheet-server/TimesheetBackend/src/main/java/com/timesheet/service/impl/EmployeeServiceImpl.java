@@ -2,7 +2,6 @@ package com.timesheet.service.impl;
 
 import com.manage.employeemanagementmodel.entity.*;
 import com.manage.employeemanagementmodel.exception.EmployeeNotFoundException;
-import com.timesheet.dto.CheckInDto;
 import com.timesheet.dto.employee.BuddyDto;
 import com.timesheet.dto.employee.EmployeeFormDto;
 import com.timesheet.dto.employee.EmployeeSaveDto;
@@ -14,7 +13,6 @@ import com.timesheet.repository.EmployeeRepository;
 import com.timesheet.repository.JobDepartmentRepository;
 import com.timesheet.repository.RoleRepository;
 import com.timesheet.service.EmployeeService;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,22 +35,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final JobDepartmentRepository jobDepartmentRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final EmailServiceImpl emailServiceImpl;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, EmployeeFormMapper employeeFormMapper, DepartmentRepository departmentRepository, JobDepartmentRepository jobDepartmentRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, EmailServiceImpl emailServiceImpl) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, EmployeeFormMapper employeeFormMapper, DepartmentRepository departmentRepository, JobDepartmentRepository jobDepartmentRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
         this.employeeFormMapper = employeeFormMapper;
         this.departmentRepository = departmentRepository;
         this.jobDepartmentRepository = jobDepartmentRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.emailServiceImpl = emailServiceImpl;
-    }
-
-    @Override
-    @Cacheable(value = "employees", key = "#id")
-    public CheckInDto.ProfileDto getEmployeeInfo(Integer id) {
-        return employeeRepository.getEmployeeInfo(id);
     }
 
     @Override
@@ -124,13 +114,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             try {
                 employee = employeeRepository.save(employee);
-                if (employeeSaveDto.getId() == null) {
-                    emailServiceImpl.sendEmailToPM(employee, "NEW");
-                    emailServiceImpl.sendEmailToEmployee(employee, "NEW", password);
-                } else {
-                    emailServiceImpl.sendEmailToPM(employee, "UPDATE");
-                    emailServiceImpl.sendEmailToEmployee(employee, "UPDATE", Strings.EMPTY);
-                }
                 return true;
             } catch (Exception e) {
                 return false;
