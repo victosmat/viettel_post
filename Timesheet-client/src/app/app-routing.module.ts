@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MyTimesheetComponent } from './my-timesheet/my-timesheet.component';
-import { MyAbsenceDayComponent } from './my-absence-day/my-absence-day.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -12,13 +11,6 @@ import { ManagementUserComponent } from './management-user/management-user.compo
 import { ManagementProjectComponent } from './management-project/management-project.component';
 import { ManagementDepartmentComponent } from './management-department/management-department.component';
 import { ManagementJobDepartmentComponent } from './management-job-department/management-job-department.component';
-import { ManagementAbsenceComponent } from './management-absence/management-absence.component';
-import { ManagementTardinessComponent } from './management-tardiness/management-tardiness.component';
-import { ManagementBonusComponent } from './management-bonus/management-bonus.component';
-import { ManagementMonitoringComponent } from './management-monitoring/management-monitoring.component';
-import { MyCheckinComponent } from './my-checkin/my-checkin.component';
-import { RegisterImagesCheckinComponent } from './register-images-checkin/register-images-checkin.component';
-import { MyMessengerComponent } from './my-messenger/my-messenger.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: "full"},
@@ -27,19 +19,11 @@ const routes: Routes = [
     children : [
       { path: 'timesheet', component: MyTimesheetComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },
       { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },
-      { path: 'absence', component: MyAbsenceDayComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },
       { path: 'admin_user', component: ManagementUserComponent, canActivate: [AuthGuard], data: { roles: ["PM"] }, },
       { path: 'admin_project', component: ManagementProjectComponent, canActivate: [AuthGuard], data: { roles: ["PM"] }, },
       { path: 'admin_department', component: ManagementDepartmentComponent, canActivate: [AuthGuard], data: { roles: ["PM"] }, },
       { path: 'admin_job_department', component: ManagementJobDepartmentComponent, canActivate: [AuthGuard], data: { roles: ["PM"] }, },
       { path: 'manage_timesheet', component: ManagementTimesheetComponent, canActivate: [AuthGuard], data: { roles: ["PM, HR"] }, },
-      { path: 'manage_monitoring', component: ManagementMonitoringComponent, canActivate: [AuthGuard], data: { roles: ["PM, HR"] }, },
-      { path: 'manage_absence', component: ManagementAbsenceComponent, canActivate: [AuthGuard], data: { roles: ["PM, HR"] }, },
-      { path: 'manage_Tardiness', component: ManagementTardinessComponent, canActivate: [AuthGuard], data: { roles: ["PM, HR"] }, },
-      { path: 'admin_bonus', component: ManagementBonusComponent, canActivate: [AuthGuard], data: { roles: ["PM"] }, },
-      { path: 'my_checkin', component: MyCheckinComponent, canActivate: [AuthGuard], data: { roles: ["TIMESHEET"] }, },
-      { path: 'register_image', component: RegisterImagesCheckinComponent, canActivate: [AuthGuard], data: { roles: ["TIMESHEET"] }, },
-      { path: 'messenger', component: MyMessengerComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },
     ]
   },
   { path: 'forbidden', component: ForbiddenComponent }

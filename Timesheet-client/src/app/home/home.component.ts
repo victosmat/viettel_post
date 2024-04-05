@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { EmployeeService } from '../service/employee/employee.service';
 import { AuthService } from '../service/auth/auth.service';
-import { CheckinService } from '../service/checkin/checkin.service';
 
 @Component({
   selector: 'app-home',
@@ -22,22 +21,9 @@ export class HomeComponent implements OnInit {
     private employeeService: EmployeeService,
     private cookieService: CookieService,
     public authService: AuthService,
-    private checkinService: CheckinService,
     private router: Router) { }
 
   ngOnInit(): void {
-
-    if (Number(this.employeeId) !== 43) {
-      this.checkinService.getAvatar(Number(this.employeeId)).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.image = response.imageBase64;
-        },
-        error: (error: any) => {
-          console.log(error.status);
-        },
-        complete: () => { },
-      });}
 
     this.employeeService.getProfile(Number(this.employeeId)).subscribe({
       next: (response: any) => {

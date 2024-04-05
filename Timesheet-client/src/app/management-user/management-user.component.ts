@@ -12,7 +12,6 @@ import { CustomDataSource } from '../shared/custom-datasource';
 import { Observable } from 'rxjs';
 import { EditBonusDialogComponent } from './edit-bonus-dialog/edit-bonus-dialog.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
-import { ViewImageCheckinDialogComponent } from './view-image-checkin-dialog/view-image-checkin-dialog.component';
 
 @Component({
   selector: 'app-management-user',
@@ -235,15 +234,4 @@ export class ManagementUserComponent implements OnInit {
     this.getAllUser();
   }
 
-  viewImage(element: any) {
-    this.dialog.open(ViewImageCheckinDialogComponent, {
-      data: element,
-      width: '1200px',
-      height: '800px',
-    }).afterClosed().subscribe({
-      complete: () => {
-        this.renderPage();
-      },
-    });
-  }
 }

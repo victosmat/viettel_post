@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeDetailDto } from '../model/employee-detail-dto';
 import { UpdatePasswordDialogComponent } from './update-password-dialog/update-password-dialog.component';
-import { ViewBonusDialogComponent } from './view-bonus-dialog/view-bonus-dialog.component';
 import { ChangeInfoDialogComponent } from './change-info-dialog/change-info-dialog.component';
 
 @Component({
@@ -153,11 +152,5 @@ export class UserProfileComponent implements OnInit {
       duration: 2000,
     });
   }
-
-  viewBonus() {
-    this.dialog.open(ViewBonusDialogComponent, {
-      width: '1000px',
-      data: this.employeeDetailDto,
-    });
-  }
+  
 }
