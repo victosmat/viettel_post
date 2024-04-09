@@ -142,12 +142,10 @@ export class ManagementUserComponent implements OnInit {
     });
   }
   editRole(element: any) {
-    const dialogRef = this.dialog.open(EditRoleDialogComponent, {
+    this.dialog.open(EditRoleDialogComponent, {
       data: element,
       width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe({
+    }).afterClosed().subscribe({
       complete: () => {
         this.renderPage();
       },

@@ -1,14 +1,12 @@
 package com.timesheet.service.impl;
 
-import com.manage.employeemanagementmodel.entity.Employee;
-import com.manage.employeemanagementmodel.entity.EmployeeProject;
-import com.manage.employeemanagementmodel.entity.Project;
-import com.manage.employeemanagementmodel.entity.Role;
+import com.manage.employeemanagementmodel.entity.*;
 import com.manage.employeemanagementmodel.entity.enums.ProjectStatus;
 import com.timesheet.dto.project.*;
 import com.timesheet.repository.EmployeeProjectRepository;
 import com.timesheet.repository.EmployeeRepository;
 import com.timesheet.repository.ProjectRepository;
+import com.timesheet.repository.TaskRepository;
 import com.timesheet.service.ProjectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,11 +22,13 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
     private final EmployeeProjectRepository employeeProjectRepository;
     private final EmployeeRepository employeeRepository;
+    private final TaskRepository taskRepository;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository, EmployeeProjectRepository employeeProjectRepository, EmployeeRepository employeeRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, EmployeeProjectRepository employeeProjectRepository, EmployeeRepository employeeRepository, TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.employeeProjectRepository = employeeProjectRepository;
         this.employeeRepository = employeeRepository;
+        this.taskRepository = taskRepository;
     }
 
     @Override
@@ -86,6 +86,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional
     public Boolean deleteProject(Integer projectId) {
         try {
             projectRepository.deleteById(projectId);

@@ -127,8 +127,8 @@ export class AddUserDialogComponent implements OnInit {
       return;
     }
 
-    if (username.split('@')[1] !== 'ncc.asia') {
-      this.snackBar.open('The username must have the @ncc.asia extension!', 'Close', {
+    if (username.split('@')[1] !== 'viettel.asia') {
+      this.snackBar.open('The username must have the @viettel.asia extension!', 'Close', {
         duration: 2000,
       });
       return;

@@ -113,7 +113,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (employeeSaveDto.getId() != null) employee.setId(employeeSaveDto.getId());
 
             try {
-                employee = employeeRepository.save(employee);
+                employeeRepository.save(employee);
                 return true;
             } catch (Exception e) {
                 return false;

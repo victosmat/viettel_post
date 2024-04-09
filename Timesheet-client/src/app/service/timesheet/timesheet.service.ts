@@ -108,43 +108,6 @@ export class TimesheetService extends BaseServiceService {
       .pipe();
   }
 
-  public getCheckinOfEmployeeAndPunishment(
-    pageNumber: number,
-    pageSize: number,
-    sortField: string,
-    sortOrder: string,
-    employeeId: number,
-    status: string,
-    month: number,
-    year: number,
-    isComplain: Boolean | null,
-    isManage: Boolean | null
-  ): Observable<any> {
-    let params: HttpParams = new HttpParams();
-    params = params.append('pageNum', pageNumber);
-    params = params.append('pageSize', pageSize);
-    params = params.append('sortField', sortField);
-    params = params.append('sortDir', sortOrder);
-    params = params.append('employeeId', employeeId);
-    params = params.append('status', status);
-    params = params.append('month', month + 1);
-    params = params.append('year', year);
-    if (isComplain !== null) {
-      params = params.append('isComplain', isComplain.toString());
-    }
-
-    if (isManage !== null) {
-      params = params.append('isManage', isManage.toString());
-    }
-
-    return this.httpClient
-      .get<CheckinPunishmentDto[]>(
-        this.base_url + 'checkin/get_checkin_of_employee_and_punishment',
-        { params: params }
-      )
-      .pipe();
-  }
-
   public getAllNote(
     status: string | null,
     startDate: Date | null,

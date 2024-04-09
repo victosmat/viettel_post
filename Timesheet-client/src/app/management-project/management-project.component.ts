@@ -139,8 +139,7 @@ export class ManagementProjectComponent implements OnInit {
         },
         width: '1400px',
       })
-      .afterClosed()
-      .subscribe({
+      .afterClosed().subscribe({
         next: () => {
           this.renderPage();
         },

@@ -42,10 +42,14 @@ public class Project implements Serializable {
     @JsonIgnore
     private List<EmployeeProject> employeeProjects;
 
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Task> tasks;
+
     public Project() {
     }
 
-    public Project(Integer id, String code, String name, String description, ProjectType projectType, ProjectStatus projectStatus, LocalDate startDate, LocalDate endDate, List<EmployeeProject> employeeProjects) {
+    public Project(Integer id, String code, String name, String description, ProjectType projectType, ProjectStatus projectStatus, LocalDate startDate, LocalDate endDate, List<EmployeeProject> employeeProjects, List<Task> tasks) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -55,6 +59,7 @@ public class Project implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.employeeProjects = employeeProjects;
+        this.tasks = tasks;
     }
 
     public Integer getId() {
@@ -127,5 +132,13 @@ public class Project implements Serializable {
 
     public void setEmployeeProjects(List<EmployeeProject> employeeProjects) {
         this.employeeProjects = employeeProjects;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

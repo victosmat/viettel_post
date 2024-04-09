@@ -10,14 +10,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
     @Query(value = "SELECT t.id, CONCAT(t.code, ': ', t.description) AS des\n" +
             "FROM task t\n" +
-            "WHERE t.project_id = 10 AND t.task_status != 'DONE'", nativeQuery = true)
-    List<TaskSelectDto> findAllByProjectId(Integer projectId);
+            "WHERE t.project_id = :projectID AND t.task_status != 'DONE'", nativeQuery = true)
+    List<TaskSelectDto> findAllByProjectId(@Param("projectID") Integer projectId);
 
     @Query("SELECT new com.timesheet.dto.task.TaskSaveSto(task.id, task.name, task.description, task.taskType, task.taskStatus, task.priorityType, task.project.id) " +
             "FROM Task task " +

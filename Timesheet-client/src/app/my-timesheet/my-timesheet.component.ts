@@ -126,7 +126,6 @@ export class MyTimesheetComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.loadTimesheet();
     this.initSummary();
-    this.getCheckinOfEmployeeAndPunishment();
   }
 
   loadTimesheet() {
@@ -437,27 +436,8 @@ export class MyTimesheetComponent implements OnInit, OnChanges {
       this.checkInRequestDto.month = this.monthSummary + 1;
       this.noteSummaryRequestDto.month = this.monthSummary + 1;
     }
-    this.getCheckinOfEmployeeAndPunishment();
   }
 
-  getCheckinOfEmployeeAndPunishment() {
-    const status = (this.statusPunishment === 'ALL' ? '' : this.statusPunishment);
-    const month = this.monthPunishment;
-    const year = this.yearPunishment;
-    const employeeId = Number(this.cookieService.get('TimesheetAppEmployeeId'));
-    this.timesheetService
-      .getCheckinOfEmployeeAndPunishment(1, 300, 'id', 'asc', employeeId, status, month, year, null, null)
-      .subscribe({
-        next: (response) => {
-          console.log(response.content);
-          this.checkinPunishmentDto = response.content;
-        },
-        error: (error) => {
-          console.log(error);
-        },
-        complete: () => { },
-      });
-  }
 
   findSummary(type: any) {
     this.totalHours = 0;
@@ -505,26 +485,6 @@ export class MyTimesheetComponent implements OnInit, OnChanges {
     this.dates = this.getAllDatesInMonth(this.yearSummary, this.monthSummary);
 
     this.timesheetService
-      .getCheckInSummaryPerMonth(this.checkInRequestDto)
-      .subscribe({
-        next: (response) => {
-          this.checkInDtoList = response;
-          this.checkInDtoList.forEach((entry) => {
-            const date = new Date(
-              entry.checkInTime[0],
-              entry.checkInTime[1],
-              entry.checkInTime[2],
-              entry.checkInTime[3],
-              entry.checkInTime[4]
-            ).getDate();
-            this.dates[date - 1].checkInDto = entry;
-          });
-        },
-        error: (error) => { },
-        complete: () => { },
-      });
-
-    this.timesheetService
       .getNoteSummaryPerMonth(this.noteSummaryRequestDto)
       .subscribe({
         next: (response) => {
@@ -570,7 +530,6 @@ export class MyTimesheetComponent implements OnInit, OnChanges {
               duration: 2000,
             });
           }
-          this.getCheckinOfEmployeeAndPunishment();
         },
         error: (error) => {
           this.snackBar.open('Checkpoint failed!', 'OK', {

@@ -102,8 +102,10 @@ export class TimesheetDialogComponent implements OnInit {
   }
 
   getTaskForFormBasedOnProjectId(projectId: any) {
+    console.log(projectId);
     this.timesheetService.getListTaskForSelectedProject(projectId).subscribe({
       next: (response: any) => {
+        console.log(response);
         this.taskSelectDtoList = response;
         console.log(this.taskSelectDtoList);
       },
@@ -136,6 +138,7 @@ export class TimesheetDialogComponent implements OnInit {
         status: TimeSheetStatus.NEW,
         createdDate: this.data.selectedDate,
       };
+      console.log(this.noteFormDto);
       this.timesheetService.saveTimesheet(this.noteFormDto).subscribe({
         next: (response: any) => {
           this.dialogRef.close(response);
