@@ -106,7 +106,7 @@
                                 </div>
                                 <div formArrayName="employeeSelectedList" class="list">
                                     <ul *ngFor="let employee of employeeSelectedList.controls; let i = index">
-                                        <mat-card
+                                        <mat-card *ngIf="!employee.disabled"
                                             style="display: flex; justify-content: space-between; align-items: center;"
                                             [formGroupName]="i">
                                             <div style="display: block;">

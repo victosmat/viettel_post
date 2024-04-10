@@ -99,7 +99,8 @@ export class SaveProjectComponent implements OnInit {
                 ),
                 roleProjectType: new FormControl(
                   { value: element.roleProjectType, disabled: false }
-                  , Validators.required),
+                  , Validators.required
+                )
               })
             );
           });
