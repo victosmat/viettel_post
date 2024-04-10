@@ -11,7 +11,7 @@
         <div style="display: flex">
           <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
             <input matStartDate formControlName="start" placeholder="Start date" />
-            <input matEndDate formControlName="end" placeholder="End date" />
+            <input matEndDate formControlName="end" placeholder="End date" (dateChange)="endDateChanged()" />
           </mat-date-range-input>
         </div>
         <mat-hint>YYYY/MM/DD – YYYY/MM/DD</mat-hint>

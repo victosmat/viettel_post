@@ -45,7 +45,7 @@ export class SaveProjectComponent implements OnInit {
     private projectService: ProjectService,
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar
-  ) { 
+  ) {
     dialogRef.disableClose = true;
   }
 
@@ -250,11 +250,6 @@ export class SaveProjectComponent implements OnInit {
   exitAdd() {
     this.checkAddMember = false;
   }
-  searchOrFilterSelectedUser() {
-  }
-
-  searchOrFilterUser() {
-  }
 
   addUserToTeam(employee: EmployeeViews) {
     console.log(this.panelMember);
@@ -327,6 +322,17 @@ export class SaveProjectComponent implements OnInit {
   }
 
   filterSelected() {
-    console.log(this.employeeSelectedList.value.keywordSelected);
+    const keyword = this.projectFrom.value.keywordSelected;
+    this.employeeSelectedList.controls.forEach((element: any) => {
+      const name = element.controls.name.value;
+      console.log(name);
+      if (name.includes(keyword)) {
+        element.enable();
+      } else {
+        element.disable();
+      }
+    });
+    console.log(this.employeeSelectedList.value);
   }
+
 }

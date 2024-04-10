@@ -339,7 +339,7 @@ export class ManagementTimesheetComponent implements OnInit {
       });
     });
     const noteIdsString = noteIds.join(',');
-    if(noteIdsString === "" || noteIdsString === null) {
+    if (noteIdsString === "" || noteIdsString === null) {
       this.snackBar.open('Cannot approved any request', 'Close', {
         duration: 2000,
         panelClass: ['success-snackbar'],
@@ -444,5 +444,48 @@ export class ManagementTimesheetComponent implements OnInit {
         this.ngOnInit();
       },
     });
-   }
+  }
+
+  endDateChanged() {
+    const startDate = this.range.controls['start'].value;
+    const endDate = this.range.controls['end'].value;
+
+    if (startDate === null || endDate === null) return;
+    const status = null;
+    if (this.status !== 'ALL') status === this.status;
+    this.timesheetService.getAllNote(status, startDate, endDate, this.emailKeyword).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.noteDetailDtoList = response;
+        if (response.length === 0) {
+          this.snackBar.open('No data', 'Close', {
+            duration: 2000,
+            panelClass: ['error-snackbar'],
+          });
+        }
+        this.noteDetailDtoList.forEach((noteDetailDto) => {
+          noteDetailDto.completed = true;
+          noteDetailDto.employeeDtoList?.forEach((employeeDto) => {
+            employeeDto.completed = true;
+            employeeDto.noteDetailViewDtos?.forEach((noteDetailViewDto) => {
+              if (noteDetailViewDto.status === TimeSheetStatus.APPROVED) {
+                noteDetailViewDto.completed = true;
+              } else {
+                noteDetailViewDto.completed = false;
+                employeeDto.completed = false;
+                noteDetailDto.completed = false;
+              }
+            });
+          });
+        });
+      },
+      error: (error) => {
+        this.snackBar.open('Error', 'Close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+        });
+      },
+      complete: () => { },
+    });
+  }
 }
