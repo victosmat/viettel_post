@@ -42,9 +42,6 @@ import { DeleteTaskComponent } from './management-project/view-task/delete-task/
 import { CommentNoteComponent } from './management-timesheet/comment-note/comment-note.component';
 import { UpdatePasswordDialogComponent } from './user-profile/update-password-dialog/update-password-dialog.component';
 import { ChangeInfoDialogComponent } from './user-profile/change-info-dialog/change-info-dialog.component';
-import { EditBonusDialogComponent } from './management-user/edit-bonus-dialog/edit-bonus-dialog.component';
-import { SaveBonusToUserDialogComponent } from './management-user/edit-bonus-dialog/save-bonus-to-user-dialog/save-bonus-to-user-dialog.component';
-import { DeleteBonusToUserDialogComponent } from './management-user/edit-bonus-dialog/delete-bonus-to-user-dialog/delete-bonus-to-user-dialog.component';
 import { UpdateStatusDialogComponent } from './management-timesheet/update-status-dialog/update-status-dialog.component';
 import { DeleteProjectComponent } from './management-project/delete-project/delete-project.component';
 @NgModule({
@@ -80,9 +77,6 @@ import { DeleteProjectComponent } from './management-project/delete-project/dele
     CommentNoteComponent,
     UpdatePasswordDialogComponent,
     ChangeInfoDialogComponent,
-    EditBonusDialogComponent,
-    SaveBonusToUserDialogComponent,
-    DeleteBonusToUserDialogComponent,
     UpdateStatusDialogComponent,
     DeleteProjectComponent,
   ],
