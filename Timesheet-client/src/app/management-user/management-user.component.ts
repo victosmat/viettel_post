@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditRoleDialogComponent } from './edit-role-dialog/edit-role-dialog.component';
 import { CustomDataSource } from '../shared/custom-datasource';
 import { Observable } from 'rxjs';
-import { EditBonusDialogComponent } from './edit-bonus-dialog/edit-bonus-dialog.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
@@ -117,17 +116,6 @@ export class ManagementUserComponent implements OnInit {
           console.log(error);
         },
       });
-  }
-
-  addBonus(element: any) {
-    this.dialog.open(EditBonusDialogComponent, {
-      data: element,
-      width: '900px',
-    }).afterClosed().subscribe({
-      complete: () => {
-        this.renderPage();
-      },
-    });
   }
 
   editUser(element: any) {
