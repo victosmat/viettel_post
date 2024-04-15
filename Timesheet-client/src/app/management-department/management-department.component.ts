@@ -114,4 +114,8 @@ export class ManagementDepartmentComponent implements OnInit {
       }
     })
   }
+
+  refresh() {
+    window.location.reload();
+  }
 }

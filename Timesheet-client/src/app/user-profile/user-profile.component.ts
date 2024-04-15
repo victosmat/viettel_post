@@ -152,5 +152,7 @@ export class UserProfileComponent implements OnInit {
       duration: 2000,
     });
   }
-  
+  refresh() {
+    window.location.reload();
+  }
 }

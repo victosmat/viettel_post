@@ -488,4 +488,8 @@ export class ManagementTimesheetComponent implements OnInit {
       complete: () => { },
     });
   }
+
+  refresh() {
+    window.location.reload();
+  }
 }

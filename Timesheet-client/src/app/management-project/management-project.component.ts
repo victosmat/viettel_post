@@ -71,6 +71,10 @@ export class ManagementProjectComponent implements OnInit {
       });
   }
 
+  refresh(){
+    window.location.reload();
+  }
+
   updateStatus(status: string) {
     this.projectService.getAllProject(this.pageNumber + 1, this.pageSize, this.sortField, this.sortOrder, status, this.keyword).subscribe({
       next: (response: any) => {

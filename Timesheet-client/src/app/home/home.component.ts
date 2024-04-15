@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { EmployeeService } from '../service/employee/employee.service';
 import { AuthService } from '../service/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +16,15 @@ export class HomeComponent implements OnInit {
   fullname!: string;
   email!: string;
   roles: string[] = [];
-  image : any;
+  image: any;
   employeeId = Number(this.cookieService.get('TimesheetAppEmployeeId'));
 
   constructor(
     private employeeService: EmployeeService,
     private cookieService: CookieService,
     public authService: AuthService,
-    private router: Router) { }
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log(this.cookieService.get("TimesheetAppToken"));
@@ -42,13 +45,12 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-    console.log(this.cookieService);
-    this.cookieService.delete('TimesheetAppToken', '/');
-    this.cookieService.delete('TimesheetAppToken');
-    this.cookieService.delete('TimesheetAppRefreshToken', '/');
-    this.cookieService.delete('TimesheetAppUsername', '/');
-    this.cookieService.delete('TimesheetAppEmployeeId', '/');
-    console.log(this.cookieService.get("TimesheetAppToken"));
-    this.router.navigate(['login']);
+    this.dialog.open(LogoutDialogComponent, {
+      width: '500px',
+    }).afterClosed().subscribe(() => {
+      this.snackBar.open('Logout successfully', 'OK', {
+        duration: 2000,
+      });
+    });
   }
 }

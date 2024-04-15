@@ -1,0 +1,9 @@
+<div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="50"></mat-spinner>
+</div>
+<h1 mat-dialog-title>Are you sure you want to sign out?</h1>
+<div mat-dialog-actions style="float: right;">
+    <button mat-raised-button type="reset" color="warn" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button type="submit" color="warn" style="background-color: green;" [mat-dialog-close]=""
+        cdkFocusInitial (click)="logout()">Ok</button>
+</div>

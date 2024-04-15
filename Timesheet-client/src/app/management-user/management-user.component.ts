@@ -80,6 +80,10 @@ export class ManagementUserComponent implements OnInit {
     return dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0];
   }
 
+  refresh() {
+    window.location.reload();
+  }
+
   getAllUser() {
     const isEnable = this.IsEnableUser === 'ALL' ? '' : this.IsEnableUser;
     const level = this.levelUser === 'ALL' ? '' : this.levelUser;

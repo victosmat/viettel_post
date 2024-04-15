@@ -1,6 +1,7 @@
 <div class="content">
-    <mat-card-header style="border-bottom: 1px solid silver;">
+    <mat-card-header style="border-bottom: 1px solid silver; display: flex; justify-content: space-between;">
         <mat-card-title style="font-size: 30px"> User </mat-card-title>
+        <mat-icon (click)="refresh()">refresh</mat-icon>
     </mat-card-header>
     <div style="display: flex; margin-top: 20px;">
         <div class="col-md-6" style="padding: 5px 15px 10px 0">
@@ -9,7 +10,6 @@
                 <mat-icon>add</mat-icon> New
             </button>
         </div>
-
     </div>
     <div style="display: flex; margin-top: 10px;">
         <mat-form-field appearance="outline">
@@ -138,7 +138,7 @@
                             <mat-icon>delete</mat-icon>
                             <span>Delete</span>
                         </button>
-                        
+
                         <button *ngIf="element.isEnabled === true" mat-menu-item (click)="deactivateUser(element)">
                             <mat-icon>block</mat-icon>
                             <span>Deactivate</span>

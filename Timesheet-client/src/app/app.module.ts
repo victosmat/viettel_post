@@ -44,6 +44,7 @@ import { UpdatePasswordDialogComponent } from './user-profile/update-password-di
 import { ChangeInfoDialogComponent } from './user-profile/change-info-dialog/change-info-dialog.component';
 import { UpdateStatusDialogComponent } from './management-timesheet/update-status-dialog/update-status-dialog.component';
 import { DeleteProjectComponent } from './management-project/delete-project/delete-project.component';
+import { LogoutDialogComponent } from './home/logout-dialog/logout-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { DeleteProjectComponent } from './management-project/delete-project/dele
     ChangeInfoDialogComponent,
     UpdateStatusDialogComponent,
     DeleteProjectComponent,
+    LogoutDialogComponent,
   ],
   imports: [
     BrowserModule,

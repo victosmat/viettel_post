@@ -63,6 +63,10 @@ export class ManagementJobDepartmentComponent implements OnInit {
     })
   }
 
+  refresh() {
+    window.location.reload();
+  }
+
   sortData($event: Sort) {
     this.sortField = $event.active;
     this.sortOrder = $event.direction;
