@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   auth : AuthRequest = new AuthRequest('', '');
+  isLoading: boolean = false;
   constructor(
     private cookieService: CookieService,
     private router: Router,
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.cookieService.check("TimesheetAppToken") === true) {
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/home/timesheet"]);
     }
   }
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
   });
 
   submit() {
+    this.isLoading = true;
     this.auth.setUsername(this.form.controls["username"].value)
     this.auth.setPassword(this.form.controls["password"].value)
     this.authService.doLogin(this.auth).subscribe(
@@ -40,20 +42,22 @@ export class LoginComponent implements OnInit {
           this.snackBar.open('Login failed. Please check your username and password. Or are you not registered yet', 'OK', {
             duration: 2000,
           });
+          this.isLoading = false;
           return;
         } else {
-        this.cookieService.set("TimesheetAppToken", response.accessToken);
-        this.cookieService.set("TimesheetAppRefreshToken", response.refreshToken);
-        this.cookieService.set("TimesheetAppUsername", response.email);
-        this.cookieService.set("TimesheetAppEmployeeId", response.employeeId);
-        this.snackBar.open('Login successfully with employee id = ' + this.cookieService.get("TimesheetAppEmployeeId"), 'OK', {
-          duration: 2000,
-        }); 
-        console.log(response);
-        if (Number(response.employeeId) === 43) {
-          this.router.navigate(["/home/my_checkin"]);
-        }
-        else this.router.navigate(["/home/timesheet"]);
+          this.cookieService.set("TimesheetAppToken", response.accessToken);
+          this.cookieService.set("TimesheetAppRefreshToken", response.refreshToken);
+          this.cookieService.set("TimesheetAppUsername", response.email);
+          this.cookieService.set("TimesheetAppEmployeeId", response.employeeId);
+          this.snackBar.open('Login successfully with employee id = ' + this.cookieService.get("TimesheetAppEmployeeId"), 'OK', {
+            duration: 2000,
+          }); 
+          console.log(response);
+          if (Number(response.employeeId) === 43) {
+            this.router.navigate(["/home/my_checkin"]);
+          }
+          else this.router.navigate(["/home/timesheet"]);
+          this.isLoading = false;
         }
       }
     );

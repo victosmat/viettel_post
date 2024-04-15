@@ -12,7 +12,9 @@ import com.timesheet.service.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -74,27 +76,37 @@ public class EmployeeRestController {
 
     @GetMapping("get_by_id")
     public ResponseEntity<EmployeeDetailDto> getEmployeeById(@RequestParam("id") Integer id) {
+        ResponseCookie responseCookie = ResponseCookie.from("platform")
+                .httpOnly(true)
+                .path("/")
+                .sameSite("None")
+                .value("browser")
+                .build();
+
         Employee employee = employeeService.getEmployeeById(id);
         if (employee == null) return ResponseEntity.badRequest().body(null);
         String buddyName = (employee.getBuddy() != null) ? employee.getBuddy().getFirstName() + " " + employee.getBuddy().getLastName() : "";
-        return ResponseEntity.ok(new EmployeeDetailDto(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getGender(),
-                employee.getBirthDate().toString(),
-                employee.getEmail(),
-                employee.getBank().getId(),
-                employee.getBank().getName(),
-                employee.getBank().getNumber(),
-                employee.getPhoto(),
-                employee.getHiringDate().toString(),
-                buddyName,
-                employee.getDepartment().getName(),
-                employee.getAccount().getUsername(),
-                employee.getJobDepartment().getJobDepartment(),
-                employee.getJobDepartment().getSalaryRange(),
-                employee.getEmployeeLevelStatus()));
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
+                .body(new EmployeeDetailDto(
+                        employee.getId(),
+                        employee.getFirstName(),
+                        employee.getLastName(),
+                        employee.getGender(),
+                        employee.getBirthDate().toString(),
+                        employee.getEmail(),
+                        employee.getBank().getId(),
+                        employee.getBank().getName(),
+                        employee.getBank().getNumber(),
+                        employee.getPhoto(),
+                        employee.getHiringDate().toString(),
+                        buddyName,
+                        employee.getDepartment().getName(),
+                        employee.getAccount().getUsername(),
+                        employee.getJobDepartment().getJobDepartment(),
+                        employee.getJobDepartment().getSalaryRange(),
+                        employee.getEmployeeLevelStatus())
+                );
     }
 
     @PostMapping("save")

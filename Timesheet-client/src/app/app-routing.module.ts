@@ -15,7 +15,7 @@ import { ManagementJobDepartmentComponent } from './management-job-department/ma
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent,
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN, PM, HR"] }, 
     children : [
       { path: 'timesheet', component: MyTimesheetComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },
       { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], data: { roles: ["STAFF, INTERN"] }, },

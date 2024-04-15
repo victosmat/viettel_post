@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-
+    console.log(this.cookieService.get("TimesheetAppToken"));
     this.employeeService.getProfile(Number(this.employeeId)).subscribe({
       next: (response: any) => {
         this.fullname = response.lastName + " " + response.firstName;
@@ -42,10 +42,13 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
+    console.log(this.cookieService);
+    this.cookieService.delete('TimesheetAppToken', '/');
     this.cookieService.delete('TimesheetAppToken');
-    this.cookieService.delete('TimesheetAppRefreshToken');
-    this.cookieService.delete('TimesheetAppUsername');
-    this.cookieService.delete('TimesheetAppEmployeeId');
+    this.cookieService.delete('TimesheetAppRefreshToken', '/');
+    this.cookieService.delete('TimesheetAppUsername', '/');
+    this.cookieService.delete('TimesheetAppEmployeeId', '/');
+    console.log(this.cookieService.get("TimesheetAppToken"));
     this.router.navigate(['login']);
   }
 }
